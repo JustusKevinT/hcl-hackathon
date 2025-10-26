@@ -216,6 +216,9 @@ python manage.py runserver
 
 # .env
 DJANGO_SECRET_KEY=secret
+
 DATABASE_URL=mysql://user:pass@localhost:3306/bankdb
+
 JWT_SECRET=myjwtsecret
+
 DEBUG=True
