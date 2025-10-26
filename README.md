@@ -288,13 +288,15 @@ from users.models import User
 
 admin = User.objects.get(username="adminuser")
 
+-- In username enter admin user name
+
 admin.role = "admin"
 
 admin.save()
 
 -- To create auditor with auditor role
 
-auditor = User.objects.create_user(username="auditor1", email="auditor1@gmail.com",role="auditor",password="Auditor@123",full_name="Auditor 1")
+auditor = User.objects.create_user(username="Enter auditor user name", email="Enter auditor mail id",role="auditor",password="Enter auditor password",full_name="Enter auditor full name")
 
 -- To verify output
 
