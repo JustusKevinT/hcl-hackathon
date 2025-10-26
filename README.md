@@ -253,6 +253,24 @@ POST /api/v1/kyc/verify/
   "message": "KYC approved successfully."
 }
 ```
+**8. List accounts for a particular user**
+
+GET /api/v1/accounts/list/
+
+**Headers**
+
+Authorization: Bearer <AUDITOR_TOKEN>
+
+**Response**
+```json
+[
+    {
+        "account_number": "147377034241",
+        "account_type": "current",
+        "balance": "1500.00"
+    }
+]
+```
 
 # Setup Instructions
 git clone <repo-url>
