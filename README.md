@@ -202,3 +202,20 @@ Authorization: Bearer <AUDITOR_TOKEN>
   }
 ]
 ```
+# Setup Instructions
+git clone <repo-url>
+cd modular-banking-backend
+
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+
+# .env
+DJANGO_SECRET_KEY=secret
+DATABASE_URL=mysql://user:pass@localhost:3306/bankdb
+JWT_SECRET=myjwtsecret
+DEBUG=True
