@@ -202,6 +202,55 @@ Authorization: Bearer <AUDITOR_TOKEN>
   }
 ]
 ```
+**6. List pending KYC submissions**
+
+GET /api/v1/kyc/pending/
+**Role: admin only**
+
+**Response**
+
+```json [
+  {
+    "kyc_id": 7,
+    "user_id": 12,
+    "username": "alice",
+    "full_name": "Alice Doe",
+    "document_type": "passport",
+    "file_url": "/media/kyc/2025/10/26/alice-passport.jpg",
+    "status": "pending",
+    "submitted_at": "2025-10-26T08:20:00Z"
+  }
+]
+```
+**7. Approve or reject KYC**
+
+POST /api/v1/kyc/verify/
+**Role: admin only**
+**Request**
+```json
+{
+  "kyc_id": 7,
+  "status": "verified",
+  "notes": "Photo ID and address verified."
+}
+```
+```json
+{
+  "kyc_id": 7,
+  "status": "rejected",
+  "notes": "Blurry image. Please re-upload."
+}
+```
+**Response**
+```json
+{
+  "kyc_id": 7,
+  "user_id": 12,
+  "status": "verified",
+  "message": "KYC approved successfully."
+}
+```
+
 # Setup Instructions
 git clone <repo-url>
 cd modular-banking-backend
