@@ -1,0 +1,8 @@
+Django
+djangorestframework
+djangorestframework-simplejwt
+bcrypt
+PyMySQL
+python-decouple
+Pillow
+django-cors-headers
