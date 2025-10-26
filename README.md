@@ -20,13 +20,6 @@ It supports customer onboarding (with KYC), account management, money transfers,
 6) Role-Based Access Control (RBAC) – Restrict endpoints by role
 
 # Tech Stack
-1) Backend: Django + Django REST Framework
-2) Auth: JWT (djangorestframework-simplejwt)
-3) Password Hashing: bcrypt
-4) Database: MySQL
-5) Storage: Local for KYC documents
-
-# Tech Stack
 
 1) Backend: Django + Django REST Framework
 2) Auth: JWT (djangorestframework-simplejwt)
@@ -49,3 +42,146 @@ Even if the DB is compromised, raw passwords cannot be recovered.
 | **Customer** | Manage own profile, KYC, accounts, and transfers |
 | **Admin**    | Manage all customers, approve KYC                |
 | **Auditor**  | Read-only access to audit logs                   |
+
+# API Documentation
+**1. Register User (with KYC)**
+
+POST /api/v1/auth/register/
+
+Registers a new customer and uploads KYC documents in one request.
+
+**Headers**
+
+Content-Type: multipart/form-data
+
+
+**Form Data**
+
+| Field           | Type   | Description                      |
+| --------------- | ------ | -------------------------------- |
+| `username`      | string | Unique username                  |
+| `email`         | string | Email address                    |
+| `password`      | string | Account password (bcrypt-hashed) |
+| `full_name`     | string | Customer’s full name             |
+| `document_type` | string | e.g. `passport`, `id_card`       |
+| `file`          | file   | KYC document (PDF/JPG/PNG)       |
+
+
+**Response**
+
+{
+  "user": {
+    "id": 1,
+    "username": "alice",
+    "email": "alice@example.com",
+    "role": "customer",
+    "kyc_verified": false
+  },
+  "kyc": {
+    "document_type": "passport",
+    "status": "pending"
+  },
+  "message": "User registered successfully. KYC pending verification."
+}
+
+**2. Login (JWT)**
+
+POST /api/v1/auth/token/
+
+**Request**
+
+{
+  "username": "alice",
+  "password": "StrongPass123"
+}
+
+
+**Response**
+
+{
+  "access": "<ACCESS_TOKEN>",
+  "refresh": "<REFRESH_TOKEN>"
+}
+
+**3. Create Bank Account**
+
+POST /api/v1/accounts/
+
+**Headers**
+
+Authorization: Bearer <ACCESS_TOKEN>
+
+
+**Request**
+
+{
+  "account_type": "savings"
+}
+
+
+**Response**
+
+{
+  "account_number": "1234567890",
+  "account_type": "savings",
+  "balance": "0.00"
+}
+
+**4. Transfer Money**
+
+POST /api/v1/transfer/
+
+**Headers**
+
+Authorization: Bearer <ACCESS_TOKEN>
+
+
+**Request**
+
+{
+  "from_account": "1234567890",
+  "to_account": "9876543210",
+  "amount": "250.00"
+}
+
+
+**Response (Success)**
+
+{
+  "transaction_id": "uuid-1234",
+  "status": "success",
+  "message": "Transfer completed successfully"
+}
+
+
+**Error Examples**
+
+{"error": "insufficient_funds"}
+
+{"error": "daily_limit_exceeded"}
+
+5. View Audit Logs (Auditor only)
+
+GET /api/v1/audit/
+
+**Headers**
+
+Authorization: Bearer <AUDITOR_TOKEN>
+
+
+Response
+
+[
+  {
+    "user_id": 1,
+    "action": "transfer_initiated",
+    "ip": "192.168.1.5",
+    "timestamp": "2025-10-26T12:40:00Z"
+  },
+  {
+    "user_id": 2,
+    "action": "kyc_verified",
+    "ip": "192.168.1.10",
+    "timestamp": "2025-10-26T12:45:00Z"
+  }
+]
