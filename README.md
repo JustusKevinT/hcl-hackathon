@@ -84,6 +84,7 @@ Content-Type: multipart/form-data
   },
   "message": "User registered successfully. KYC pending verification."
 }
+```
 
 **2. Login (JWT)**
 
@@ -96,7 +97,7 @@ POST /api/v1/auth/token/
   "username": "alice",
   "password": "StrongPass123"
 }
-
+```
 
 **Response**
 
@@ -105,6 +106,7 @@ POST /api/v1/auth/token/
   "access": "<ACCESS_TOKEN>",
   "refresh": "<REFRESH_TOKEN>"
 }
+```
 
 **3. Create Bank Account**
 
@@ -122,7 +124,7 @@ Authorization: Bearer <ACCESS_TOKEN>
   "account_type": "savings",
   "initial_deposit": "100.00"
 }
-
+```
 
 **Response**
 
@@ -132,6 +134,7 @@ Authorization: Bearer <ACCESS_TOKEN>
   "account_type": "savings",
   "balance": "100.00"
 }
+```
 
 **4. Transfer Money**
 
@@ -150,7 +153,7 @@ Authorization: Bearer <ACCESS_TOKEN>
   "to_account": "9876543210",
   "amount": "250.00"
 }
-
+```
 
 **Response (Success)**
 
@@ -160,15 +163,17 @@ Authorization: Bearer <ACCESS_TOKEN>
   "status": "success",
   "message": "Transfer completed successfully"
 }
-
+```
 
 **Error Examples**
 
 ```json
 {"error": "insufficient_funds"}
+```
 
 ```json
 {"error": "daily_limit_exceeded"}
+```
 
 **5. View Audit Logs (Auditor only)**
 
@@ -196,3 +201,4 @@ Authorization: Bearer <AUDITOR_TOKEN>
     "timestamp": "2025-10-26T12:45:00Z"
   }
 ]
+```
