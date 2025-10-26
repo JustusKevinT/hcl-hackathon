@@ -69,6 +69,7 @@ Content-Type: multipart/form-data
 
 **Response**
 
+```json
 {
   "user": {
     "id": 1,
@@ -90,6 +91,7 @@ POST /api/v1/auth/token/
 
 **Request**
 
+```json
 {
   "username": "alice",
   "password": "StrongPass123"
@@ -98,6 +100,7 @@ POST /api/v1/auth/token/
 
 **Response**
 
+```json
 {
   "access": "<ACCESS_TOKEN>",
   "refresh": "<REFRESH_TOKEN>"
@@ -114,17 +117,20 @@ Authorization: Bearer <ACCESS_TOKEN>
 
 **Request**
 
+```json
 {
-  "account_type": "savings"
+  "account_type": "savings",
+  "initial_deposit": "100.00"
 }
 
 
 **Response**
 
+```json
 {
   "account_number": "1234567890",
   "account_type": "savings",
-  "balance": "0.00"
+  "balance": "100.00"
 }
 
 **4. Transfer Money**
@@ -138,6 +144,7 @@ Authorization: Bearer <ACCESS_TOKEN>
 
 **Request**
 
+```json
 {
   "from_account": "1234567890",
   "to_account": "9876543210",
@@ -147,6 +154,7 @@ Authorization: Bearer <ACCESS_TOKEN>
 
 **Response (Success)**
 
+```json
 {
   "transaction_id": "uuid-1234",
   "status": "success",
@@ -156,8 +164,10 @@ Authorization: Bearer <ACCESS_TOKEN>
 
 **Error Examples**
 
+```json
 {"error": "insufficient_funds"}
 
+```json
 {"error": "daily_limit_exceeded"}
 
 **5. View Audit Logs (Auditor only)**
@@ -171,6 +181,7 @@ Authorization: Bearer <AUDITOR_TOKEN>
 
 **Response**
 
+```json
 [
   {
     "user_id": 1,
