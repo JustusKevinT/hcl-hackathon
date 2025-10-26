@@ -268,6 +268,14 @@ python manage.py migrate
 
 python manage.py createsuperuser
 
+Username: Enter your admin username
+
+Email address: Enter your admin mail id
+
+Password: Enter your admin password
+
+Password (again): Enter your admin password
+
 python manage.py runserver
 
 # .env
