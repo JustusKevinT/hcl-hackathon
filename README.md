@@ -205,11 +205,13 @@ Authorization: Bearer <AUDITOR_TOKEN>
 **6. List pending KYC submissions**
 
 GET /api/v1/kyc/pending/
+
 **Role: admin only**
 
 **Response**
 
-```json [
+```json
+[
   {
     "kyc_id": 7,
     "user_id": 12,
@@ -225,6 +227,7 @@ GET /api/v1/kyc/pending/
 **7. Approve or reject KYC**
 
 POST /api/v1/kyc/verify/
+
 **Role: admin only**
 **Request**
 ```json
