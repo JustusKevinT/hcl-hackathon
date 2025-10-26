@@ -160,7 +160,7 @@ Authorization: Bearer <ACCESS_TOKEN>
 
 {"error": "daily_limit_exceeded"}
 
-5. View Audit Logs (Auditor only)
+**5. View Audit Logs (Auditor only)**
 
 GET /api/v1/audit/
 
@@ -169,7 +169,7 @@ GET /api/v1/audit/
 Authorization: Bearer <AUDITOR_TOKEN>
 
 
-Response
+**Response**
 
 [
   {
