@@ -276,6 +276,20 @@ Password: Enter your admin password
 
 Password (again): Enter your admin password
 
+Superuser created successfully.
+
+python manage.py shell
+
+from users.models import User
+
+admin = User.objects.get(username="adminuser")
+
+admin.role = "admin"
+
+admin.save()
+
+exit()
+
 python manage.py runserver
 
 # .env
