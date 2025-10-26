@@ -17,11 +17,12 @@ It supports customer onboarding (with KYC), account management, money transfers,
 
 # Key Features
 1) Secure Authentication – JWT tokens + bcrypt password hashing
-2) KYC Integration – Upload and verify customer identity documents
-3) Account Management – Create savings/current/fixed deposit accounts
-4) Money Transfer – Safe, validated transfers between accounts
-5) Audit Logging – Every action logged with user, timestamp, and IP
-6) Role-Based Access Control (RBAC) – Restrict endpoints by role
+2) Customer Onboarding — Secure registration and authentication
+3) KYC Verification — Admin can approve or reject customer KYC submissions
+4) Account Management – Customers can create savings, current, or FD accounts
+5) Money Transfer – Validated fund transfers with balance and daily limit checks
+6) Audit Logging – Tracks all actions (user, timestamp, IP) accessible only to auditors
+7) Role-Based Access Control (RBAC) – Restrict endpoints by role, separate privileges for Admin, Customer, and Auditor
 
 # Tech Stack
 
