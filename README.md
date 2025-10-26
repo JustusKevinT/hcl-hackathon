@@ -1,5 +1,9 @@
 # hcl-hackathon
 
+# Project Title
+
+Modular Banking Backend System
+
 # Overview
 A secure Django REST API backend for a modular banking system.
 It supports customer onboarding (with KYC), account management, money transfers, and audit logging — with built-in bcrypt password hashing and role-based access control.
