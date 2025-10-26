@@ -6,3 +6,4 @@ PyMySQL
 python-decouple
 Pillow
 django-cors-headers
+cryptography
