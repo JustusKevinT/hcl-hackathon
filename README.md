@@ -266,6 +266,8 @@ pip install -r requirements.txt
 
 python manage.py migrate
 
+-- To create superuser as admin
+
 python manage.py createsuperuser
 
 Username: Enter your admin username
@@ -280,6 +282,8 @@ Superuser created successfully.
 
 python manage.py shell
 
+-- To create admin with admin role
+
 from users.models import User
 
 admin = User.objects.get(username="adminuser")
@@ -287,6 +291,14 @@ admin = User.objects.get(username="adminuser")
 admin.role = "admin"
 
 admin.save()
+
+-- To create auditor with auditor role
+
+auditor = User.objects.create_user(username="auditor1", email="auditor1@gmail.com",role="auditor",password="Auditor@123",full_name="Auditor 1")
+
+-- To verify output
+
+print(auditor)
 
 exit()
 
